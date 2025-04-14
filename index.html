@@ -1,126 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bilte Co</title>
-    <meta name="description" content="Quietly consulting with select client to architect and building digital products.">
-    <script defer src="https://eu.umami.is/script.js" data-website-id="4f379cf0-1a78-41d3-8d61-80b55e66306c"></script>
-    <style>
-      @font-face {
-        font-family: founders-grotesk;
-        src: url('/fonts/founders-grotesk-bold.woff2');
-        font-weight: bold;
-      }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Bilte Co</title>
+        <meta
+            name="description"
+            content="Quietly consulting with select client to architect and building digital products."
+        />
+        <script
+            defer
+            src="https://eu.umami.is/script.js"
+            data-website-id="4f379cf0-1a78-41d3-8d61-80b55e66306c"
+        ></script>
+        <style>
+            @font-face {
+                font-family: founders-grotesk;
+                src: url("/fonts/founders-grotesk-bold.woff2");
+                font-weight: bold;
+            }
 
-      html {
-        line-height: 1.15; /* 1 */
-        -webkit-text-size-adjust: 100%; /* 2 */
-      }
+            html {
+                line-height: 1.15; /* 1 */
+                -webkit-text-size-adjust: 100%; /* 2 */
+            }
 
-      body {
-        margin: 0;
-      }
+            body {
+                margin: 0;
+            }
 
-      a {
-        background-color: transparent;
-      }
+            a {
+                background-color: transparent;
+            }
 
-      img {
-        border-style: none;
-      }
+            img {
+                border-style: none;
+            }
 
-      ul {
-        list-style: none;
-        padding: 0;
-      }
+            ul {
+                list-style: none;
+                padding: 0;
+            }
 
-      html, body {
-        font-family: founders-grotesk, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-        font-weight: 800;
-        font-style: normal;
-      }
+            html,
+            body {
+                font-family:
+                    founders-grotesk, "Helvetica Neue", Helvetica, Arial,
+                    "Lucida Grande", sans-serif;
+                font-weight: 800;
+                font-style: normal;
+            }
 
-      html {
-        background-color: #2E3440;
-      }
+            html {
+                background-color: #f9f6ee;
+            }
 
-      body {
-        background-color: #2E3440;
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-        /* border: 20px solid #fefefe; */
-        box-sizing: border-box;
-      }
+            body {
+                background: #f9f6ee;
+                background-image: radial-gradient(
+                    rgba(129, 161, 193, 0.2) 2px,
+                    transparent 0
+                );
+                background-size: 40px 40px;
+                background-position: -19px -19px;
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+                /* border: 20px solid #fefefe; */
+                box-sizing: border-box;
+            }
 
-      main {
-        border: 1px solid #ECEFF4;
-        margin: 25px;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        flex: 1;
-        -webkit-box-align: end;
-        -ms-flex-align: end;
-        align-items: end;
-        -webkit-box-pack: end;
-        -ms-flex-pack: end;
-        justify-content: end;
-      }
+            main {
+                border: 1px solid #81a1c102;
+                margin: 25px;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                flex: 1;
+                -webkit-box-align: end;
+                -ms-flex-align: end;
+                align-items: end;
+                -webkit-box-pack: end;
+                -ms-flex-pack: end;
+                justify-content: end;
+            }
 
-      .bilte-container {
-        width: 100%;
-        padding: 0 20px;
-      }
+            .bilte-container {
+                width: 100%;
+                padding: 0 20px;
+            }
 
-      .bilte-h1 {
-        font-size: 26px;
-        /* letter-spacing: .8em; */
-        line-height: 1.2;;
-        color: #ECEFF4;
-        text-align: left;
-        margin: 0;
-        margin-bottom: 4px;
-      }
+            .bilte-h1 {
+                font-size: 26px;
+                /* letter-spacing: .8em; */
+                line-height: 1.2;
+                color: #5e81ac;
+                text-align: left;
+                margin: 0;
+                margin-bottom: 4px;
+            }
 
-      @media screen and (min-width: 640px) {
-        .bilte-h1 {
-          font-size: 36px;
-        }
-      }
+            @media screen and (min-width: 640px) {
+                .bilte-h1 {
+                    font-size: 36px;
+                }
+            }
 
-      @media screen and (min-width: 768px) {
-        .bilte-h1 {
-          font-size: 48px;
-        }
-      }
+            @media screen and (min-width: 768px) {
+                .bilte-h1 {
+                    font-size: 48px;
+                }
+            }
 
-      @media screen and (min-width: 1024px) {
-        .bilte-h1 {
-          font-size: 64px;
-        }
-      }
+            @media screen and (min-width: 1024px) {
+                .bilte-h1 {
+                    font-size: 64px;
+                }
+            }
 
-      @media screen and (min-width: 1280px) {
-        .bilte-h1 {
-          font-size: 80px;
-        }
-      }
+            @media screen and (min-width: 1280px) {
+                .bilte-h1 {
+                    font-size: 80px;
+                }
+            }
 
-      @media screen and (min-width: 1536px) {
-        .bilte-h1 {
-          font-size: 96px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <section class="bilte-container">
-        <h1 class="bilte-h1">Bilte Co</h1>
-      </section>
-    </main>
-  </body>
+            @media screen and (min-width: 1536px) {
+                .bilte-h1 {
+                    font-size: 96px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <section class="bilte-container">
+                <h1 class="bilte-h1">Bilte Co</h1>
+            </section>
+        </main>
+    </body>
 </html>
