@@ -1,0 +1,10 @@
+# flyctl launch added from .gitignore
+**/.env
+**/.envrc
+**/bilte
+**/bilte
+!**/cmd/bilte
+fly/
+.git
+.github
+README.md

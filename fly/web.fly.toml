@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for bilte-web on 2025-04-18T14:04:03-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bilte-web'
+primary_region = 'den'
+
+[build]
+dockerfile = "Dockerfile.web"
+
+[http_service]
+internal_port = 8080
+force_https = true
+auto_stop_machines = 'off'
+auto_start_machines = false
+min_machines_running = 2
+processes = ['app']
+
+[[vm]]
+memory = '1gb'
+cpu_kind = 'shared'
+cpus = 1
