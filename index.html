@@ -7,7 +7,7 @@
         <title>Bilte Co</title>
         <meta
             name="description"
-            content="Quietly consulting with select client to architect and building digital products."
+            content="Strategy-led software engineering and consulting—delivering impactful results in high-stakes domains."
         />
         <script
             defer
@@ -15,10 +15,35 @@
             data-website-id="4f379cf0-1a78-41d3-8d61-80b55e66306c"
         ></script>
         <style>
+            :root {
+                --white: #f6f7f8;
+                --black: #161a1d;
+                --background: var(--white);
+                --text: var(--black);
+            }
+
+            @font-face {
+                font-family: founders-grotesk;
+                src: url("/fonts/founders-grotesk-light.woff2");
+                font-weight: 300;
+                font-display: swap;
+            }
+            @font-face {
+                font-family: founders-grotesk;
+                src: url("/fonts/founders-grotesk-regular.woff2");
+                font-weight: 400;
+                font-display: swap;
+            }
+            @font-face {
+                font-family: founders-grotesk;
+                src: url("/fonts/founders-grotesk-medium.woff2");
+                font-weight: 500;
+                font-display: swap;
+            }
             @font-face {
                 font-family: founders-grotesk;
                 src: url("/fonts/founders-grotesk-bold.woff2");
-                font-weight: bold;
+                font-weight: 700;
                 font-display: swap;
             }
 
@@ -49,22 +74,17 @@
                 font-family:
                     founders-grotesk, "Helvetica Neue", Helvetica, Arial,
                     "Lucida Grande", sans-serif;
-                font-weight: 800;
+                font-weight: 400;
                 font-style: normal;
             }
 
-            html {
-                background-color: #f9f6ee;
+            html,
+            body {
+                background-color: var(--background);
+                color: var(--text);
             }
 
             body {
-                background: #f9f6ee;
-                background-image: radial-gradient(
-                    rgba(129, 161, 193, 0.2) 2px,
-                    transparent 0
-                );
-                background-size: 40px 40px;
-                background-position: -19px -19px;
                 display: flex;
                 min-height: 100vh;
                 flex-direction: column;
@@ -73,70 +93,96 @@
             }
 
             main {
-                border: 1px solid #81a1c102;
+                font-size: 1em;
                 margin: 25px;
                 display: -webkit-box;
                 display: -ms-flexbox;
                 display: flex;
                 flex: 1;
-                -webkit-box-align: end;
-                -ms-flex-align: end;
-                align-items: end;
-                -webkit-box-pack: end;
-                -ms-flex-pack: end;
-                justify-content: end;
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: start;
+                -webkit-box-pack: start;
+                -ms-flex-pack: start;
+                justify-content: start;
             }
 
-            .bilte-container {
-                width: 100%;
-                padding: 0 20px;
+            section {
+                max-width: 28.125em;
             }
 
-            .bilte-h1 {
+            h1 {
                 font-size: 26px;
+                font-weight: 700;
                 /* letter-spacing: .8em; */
                 line-height: 1.2;
-                color: #5e81ac;
                 text-align: left;
                 margin: 0;
                 margin-bottom: 4px;
             }
 
+            h2 {
+                font-weight: 500;
+                font-size: 1.25em;
+            }
+
             @media screen and (min-width: 640px) {
-                .bilte-h1 {
+                h1 {
                     font-size: 36px;
                 }
             }
 
             @media screen and (min-width: 768px) {
-                .bilte-h1 {
+                h1 {
                     font-size: 48px;
                 }
             }
 
             @media screen and (min-width: 1024px) {
-                .bilte-h1 {
+                h1 {
                     font-size: 64px;
                 }
             }
 
             @media screen and (min-width: 1280px) {
-                .bilte-h1 {
+                h1 {
                     font-size: 80px;
                 }
             }
 
             @media screen and (min-width: 1536px) {
-                .bilte-h1 {
-                    font-size: 96px;
+                h1 {
+                    font-size: 128px;
                 }
             }
         </style>
     </head>
     <body>
         <main>
-            <section class="bilte-container">
-                <h1 class="bilte-h1">Bilte Co</h1>
+            <section>
+                <h1>bilte co</h1>
+                <h2>
+                    Strategy-led software engineering and consulting for
+                    companies of all sizes, across a multitude of industries.
+                </h2>
+                <p>
+                    Jamie Emerson is the founder of <strong>bilte co</strong>,
+                    where he works closely with select clients to architect,
+                    engineer, and lead the development of refined solutions to
+                    complex challenges.
+                </p>
+                <p>
+                    <strong>bilte co</strong> has partnered with institutions
+                    and enterprises across <strong>Aviation</strong>,
+                    <strong>Neuroscience Research</strong>,
+                    <strong>Enterprise Data Storage</strong>,
+                    <strong>Corporate Sustainability</strong>, and
+                    more—delivering impactful results in high-stakes domains.
+                </p>
+                <p>
+                    At this time, <strong>bilte co</strong> is not accepting new
+                    clients or projects.
+                </p>
             </section>
         </main>
     </body>
