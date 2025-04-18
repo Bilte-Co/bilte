@@ -44,13 +44,13 @@ func TestNewLoggerFromEnv(t *testing.T) {
 		if hasLogLevel {
 			t.Setenv("LOG_LEVEL", origLogLevel)
 		} else {
-			os.Unsetenv("LOG_LEVEL")
+			_ = os.Unsetenv("LOG_LEVEL")
 		}
 
 		if hasAppEnv {
 			t.Setenv("APP_ENV", origAppEnv)
 		} else {
-			os.Unsetenv("APP_ENV")
+			_ = os.Unsetenv("APP_ENV")
 		}
 	}()
 

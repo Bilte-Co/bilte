@@ -59,7 +59,7 @@ func NewLogger(level string, development bool) *zerolog.Logger {
 // LOG_LEVEL for determining the level and LOG_MODE for determining the output
 // parameters.
 func NewLoggerFromEnv() *zerolog.Logger {
-	godotenv.Load()
+	_ = godotenv.Load()
 
 	level := os.Getenv("LOG_LEVEL")
 	development := strings.ToLower(strings.TrimSpace(os.Getenv("APP_ENV"))) == "development"
