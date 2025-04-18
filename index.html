@@ -93,8 +93,8 @@
             }
 
             main {
-                font-size: 1em;
-                margin: 25px;
+                font-size: 1.25rem;
+                padding: 1rem;
                 display: -webkit-box;
                 display: -ms-flexbox;
                 display: flex;
@@ -108,13 +108,14 @@
             }
 
             section {
-                max-width: 28.125em;
+                width: 100%;
+                max-width: 40rem;
             }
 
             h1 {
-                font-size: 26px;
+                font-size: 6rem;
                 font-weight: 700;
-                /* letter-spacing: .8em; */
+                /* letter-spacing: .8rem; */
                 line-height: 1.2;
                 text-align: left;
                 margin: 0;
@@ -123,36 +124,64 @@
 
             h2 {
                 font-weight: 500;
-                font-size: 1.25em;
+                font-size: 1.75rem;
+            }
+
+            @media screen and (min-width: 520px) {
+                h1 {
+                    /* font-size: 6rem; */
+                    font-size: 7rem;
+                }
+
+                main {
+                    padding: 1.75rem;
+                }
             }
 
             @media screen and (min-width: 640px) {
                 h1 {
-                    font-size: 36px;
+                    /* font-size: 6rem; */
+                    font-size: 10rem;
+                }
+
+                main {
+                    padding: 1.75rem;
                 }
             }
 
             @media screen and (min-width: 768px) {
                 h1 {
-                    font-size: 48px;
+                    /* font-size: 7rem; */
+                }
+
+                main {
+                    padding: 2.5rem;
                 }
             }
 
             @media screen and (min-width: 1024px) {
                 h1 {
-                    font-size: 64px;
+                    /* font-size: 8rem; */
+                }
+
+                main {
+                    padding: 3.75rem;
                 }
             }
 
             @media screen and (min-width: 1280px) {
                 h1 {
-                    font-size: 80px;
+                    /* font-size: 9rem; */
+                }
+
+                main {
+                    padding: 3.75rem;
                 }
             }
 
             @media screen and (min-width: 1536px) {
                 h1 {
-                    font-size: 128px;
+                    /* font-size: 10rem; */
                 }
             }
         </style>
