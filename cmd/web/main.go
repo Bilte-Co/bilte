@@ -35,12 +35,14 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 		appEnv = "development"
 	}
 
+	isProduction := appEnv == "production"
+
 	e := echo.New()
 	e.Use(middleware.RemoveTrailingSlashWithConfig(middleware.TrailingSlashConfig{
 		RedirectCode: http.StatusMovedPermanently,
 	}))
 
-	if appEnv == "production" {
+	if isProduction {
 		e.HideBanner = true
 		e.HidePort = true
 		e.Pre(middleware.HTTPSRedirect())
@@ -76,7 +78,7 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 		}
 	}(server)
 
-	e = router.NewRouter(e, server)
+	e = router.NewRouter(e, server, isProduction)
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 

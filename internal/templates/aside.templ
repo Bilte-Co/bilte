@@ -1,0 +1,21 @@
+package templates
+
+templ Aside() {
+	<aside id="feed" class="feed-wrapper">
+		<code class="mono"></code>
+	</aside>
+	<script>
+        if (typeof EventSource !== "undefined") {
+            const source = new EventSource("/sse?stream=feed");
+            source.onmessage = function (event) {
+                feedWrap = document.getElementById("feed");
+                feedEl = feedWrap.firstElementChild;
+
+                feedEl.innerHTML += "<p>" + event.data + "</p>";
+            };
+        } else {
+            document.getElementById("feed").innerHTML =
+                "Sorry, your browser does not support server-sent events...";
+        }
+    </script>
+}

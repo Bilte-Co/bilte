@@ -1,11 +1,18 @@
 package router
 
 import (
+	"github.com/bilte-co/bilte/internal/templates"
+
 	"github.com/labstack/echo/v4"
 	"github.com/r3labs/sse/v2"
 )
 
-func NewRouter(e *echo.Echo, sseServer *sse.Server) *echo.Echo {
+func NewRouter(e *echo.Echo, sseServer *sse.Server, production bool) *echo.Echo {
+	e.GET("/", func(c echo.Context) error {
+		templates.Home(production).Render(c.Request().Context(), c.Response().Writer)
+		return nil
+	})
+
 	e.GET("/sse", func(c echo.Context) error {
 		country := c.Request().Header.Get("CF-IPCountry")
 
