@@ -1,0 +1,303 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+/* 2. Remove default margin */
+* {
+    margin: 0;
+}
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+body {
+    /* 4. Add accessible line-height */
+    line-height: 1.4;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+/* 9. Improve line wrapping */
+p {
+    text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    text-wrap: balance;
+}
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+
+:root {
+    --white: #f6f7f8;
+    --black: #161a1d;
+    --gray-0: #d7dcdf;
+    --background: var(--white);
+    --text: var(--black);
+}
+
+/* @font-face {
+    font-family: founders-grotesk;
+    src: url("/fonts/founders-grotesk-light.woff2");
+    font-weight: 300;
+    font-display: auto;
+} */
+@font-face {
+    font-family: founders-grotesk;
+    src: url("/fonts/founders-grotesk-regular.woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: founders-grotesk;
+    src: url("/fonts/founders-grotesk-medium.woff2");
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: founders-grotesk;
+    src: url("/fonts/founders-grotesk-bold.woff2");
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: blex-mono;
+    src: url("/fonts/BlexMonoNerdFontMono-LightItalic.woff2");
+    font-weight: 300;
+    font-display: swap;
+    font-style: italic;
+}
+@font-face {
+    font-family: blex-mono;
+    src: url("/fonts/BlexMonoNerdFontMono-Light.woff2");
+    font-weight: 300;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    background-color: transparent;
+}
+
+img {
+    border-style: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+html,
+body {
+    font-family:
+        founders-grotesk, "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
+        sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html,
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    /* border: 20px solid #fefefe; */
+    box-sizing: border-box;
+}
+
+strong {
+    font-weight: 500;
+}
+
+.bilte-co {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mono {
+    font-family: blex-mono;
+    font-size: 0.875rem;
+}
+
+main {
+    background-color: var(--background);
+    font-size: 1.25rem;
+    position: relative;
+    /* margin-left: 20px; */
+    z-index: 500;
+    padding: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex: 1;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+}
+
+aside {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    background-color: var(--gray-0);
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 80vw;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: scroll;
+    padding: 6px;
+    -ms-overflow-style: none;
+}
+
+aside::-webkit-scrollbar {
+    display: none;
+}
+
+section {
+    width: 100%;
+    max-width: 40rem;
+}
+
+h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    /* letter-spacing: .8rem; */
+    line-height: 1.2;
+    text-align: left;
+    margin: 0;
+    margin-bottom: 1.25rem;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 520px) {
+    h1 {
+        /* font-size: 6rem; */
+        font-size: 7rem;
+    }
+
+    main {
+        padding: 1.75rem;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    h1 {
+        /* font-size: 6rem; */
+        font-size: 10rem;
+    }
+
+    main {
+        padding: 1.75rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    h1 {
+        /* font-size: 7rem; */
+    }
+
+    main {
+        padding: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    h1 {
+        /* font-size: 8rem; */
+    }
+
+    main {
+        padding: 3.75rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    h1 {
+        /* font-size: 9rem; */
+    }
+
+    main {
+        padding: 3.75rem;
+    }
+}
+
+@media screen and (min-width: 1536px) {
+    h1 {
+        /* font-size: 10rem; */
+    }
+}

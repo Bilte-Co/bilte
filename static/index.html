@@ -50,7 +50,7 @@
 
         <meta name="theme-color" content="#f6f7f8" />
 
-        <!-- Meta Tags Generated with https://metatags.io -->
+        <link rel="stylesheet" href="/css/styles.css" />
         <script>
             !(function (t, e) {
                 var o, n, p, r;
@@ -113,251 +113,19 @@
                     }),
                     (e.__SV = 1));
             })(document, window.posthog || []);
-            posthog.init("phc_i3AjobMODEfax4FO5q2GRihJR8bSTj8hlw3yMFWZLBN", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "always", // or 'always' to create profiles for anonymous users as well
-            });
+            // posthog.init("phc_i3AjobMODEfax4FO5q2GRihJR8bSTj8hlw3yMFWZLBN", {
+            //     api_host: "https://us.i.posthog.com",
+            //     person_profiles: "always", // or 'always' to create profiles for anonymous users as well
+            // });
         </script>
-        <style>
-            :root {
-                --white: #f6f7f8;
-                --black: #161a1d;
-                --background: var(--white);
-                --text: var(--black);
-            }
-
-            /* @font-face {
-                font-family: founders-grotesk;
-                src: url("/fonts/founders-grotesk-light.woff2");
-                font-weight: 300;
-                font-display: auto;
-            } */
-            @font-face {
-                font-family: founders-grotesk;
-                src: url("/fonts/founders-grotesk-regular.woff2");
-                font-weight: 400;
-                font-display: swap;
-            }
-            @font-face {
-                font-family: founders-grotesk;
-                src: url("/fonts/founders-grotesk-medium.woff2");
-                font-weight: 500;
-                font-display: swap;
-            }
-            @font-face {
-                font-family: founders-grotesk;
-                src: url("/fonts/founders-grotesk-bold.woff2");
-                font-weight: 700;
-                font-display: swap;
-            }
-            @font-face {
-                font-family: blex-mono;
-                src: url("/fonts/BlexMonoNerdFontMono-LightItalic.woff2");
-                font-weight: 300;
-                font-display: swap;
-                font-style: italic;
-            }
-            @font-face {
-                font-family: blex-mono;
-                src: url("/fonts/BlexMonoNerdFontMono-Light.woff2");
-                font-weight: 300;
-                font-display: swap;
-            }
-
-            html {
-                line-height: 1.15; /* 1 */
-                -webkit-text-size-adjust: 100%; /* 2 */
-            }
-
-            body {
-                margin: 0;
-            }
-
-            a {
-                background-color: transparent;
-            }
-
-            img {
-                border-style: none;
-            }
-
-            ul {
-                list-style: none;
-                padding: 0;
-            }
-
-            html,
-            body {
-                font-family:
-                    founders-grotesk, "Helvetica Neue", Helvetica, Arial,
-                    "Lucida Grande", sans-serif;
-                font-weight: 400;
-                font-style: normal;
-            }
-
-            html,
-            body {
-                background-color: var(--background);
-                color: var(--text);
-            }
-
-            body {
-                display: flex;
-                min-height: 100vh;
-                flex-direction: column;
-                /* border: 20px solid #fefefe; */
-                box-sizing: border-box;
-            }
-
-            strong {
-                font-weight: 500;
-            }
-
-            .bilte-co {
-                font-weight: 700;
-                white-space: nowrap;
-            }
-
-            .mono {
-                font-family: monospace;
-                font-size: 0.875rem;
-            }
-
-            main {
-                font-size: 1.25rem;
-                padding: 1rem;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-                flex: 1;
-                -webkit-box-align: start;
-                -ms-flex-align: start;
-                align-items: start;
-                -webkit-box-pack: start;
-                -ms-flex-pack: start;
-                justify-content: start;
-            }
-
-            section {
-                width: 100%;
-                max-width: 40rem;
-            }
-
-            h1 {
-                font-size: 6rem;
-                font-weight: 700;
-                /* letter-spacing: .8rem; */
-                line-height: 1.2;
-                text-align: left;
-                margin: 0;
-                margin-bottom: 4px;
-            }
-
-            h2 {
-                font-weight: 500;
-                font-size: 1.75rem;
-            }
-
-            @media screen and (min-width: 520px) {
-                h1 {
-                    /* font-size: 6rem; */
-                    font-size: 7rem;
-                }
-
-                main {
-                    padding: 1.75rem;
-                }
-            }
-
-            @media screen and (min-width: 640px) {
-                h1 {
-                    /* font-size: 6rem; */
-                    font-size: 10rem;
-                }
-
-                main {
-                    padding: 1.75rem;
-                }
-            }
-
-            @media screen and (min-width: 768px) {
-                h1 {
-                    /* font-size: 7rem; */
-                }
-
-                main {
-                    padding: 2.5rem;
-                }
-            }
-
-            @media screen and (min-width: 1024px) {
-                h1 {
-                    /* font-size: 8rem; */
-                }
-
-                main {
-                    padding: 3.75rem;
-                }
-            }
-
-            @media screen and (min-width: 1280px) {
-                h1 {
-                    /* font-size: 9rem; */
-                }
-
-                main {
-                    padding: 3.75rem;
-                }
-            }
-
-            @media screen and (min-width: 1536px) {
-                h1 {
-                    /* font-size: 10rem; */
-                }
-            }
-
-            .feed-wrapper {
-                display: flex;
-                position: fixed;
-                bottom: 3.75rem;
-                left: 3.75rem;
-                width: 650px;
-                max-width: calc(100vw - 7.5rem);
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-                border-radius: 2px;
-                border: 1px solid;
-                padding: 6px 14px;
-                -ms-overflow-style: none;
-                opacity: 1;
-                transition: opacity 380ms ease-in-out;
-            }
-
-            .feed-wrapper::-webkit-scrollbar {
-                display: none;
-            }
-
-            .hidden {
-                opacity: 0;
-                /* position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0; */
-            }
-        </style>
     </head>
     <body>
         <main>
             <section>
                 <h1>bilte co</h1>
                 <h2>
-                    Strategy-led software engineering and consulting for
-                    companies of all sizes, across a multitude of industries.
+                    Strategy-led software engineering and consulting, built on
+                    experience, trusted across industries.
                 </h2>
                 <p>
                     Jamie Emerson is the founder of
@@ -380,10 +148,10 @@
                 </p>
             </section>
             <!-- <section data-on-load="@get('/feed')"> -->
-            <section id="feed" class="feed-wrapper hidden">
-                <code class="mono"></code>
-            </section>
         </main>
+        <!-- <aside id="feed" class="feed-wrapper">
+            <code class="mono"></code>
+        </aside>
         <script>
             // Example taken from: https://www.w3schools.com/html/html5_serversentevents.asp
             if (typeof EventSource !== "undefined") {
@@ -392,16 +160,12 @@
                     feedWrap = document.getElementById("feed");
                     feedEl = feedWrap.firstElementChild;
 
-                    feedEl.innerHTML = "<span>" + event.data + "</span>";
-
-                    if (feedWrap.classList.contains("hidden")) {
-                        feedWrap.classList.remove("hidden");
-                    }
+                    feedEl.innerHTML += "<p>" + event.data + "</p>";
                 };
             } else {
                 document.getElementById("feed").innerHTML =
                     "Sorry, your browser does not support server-sent events...";
             }
-        </script>
+        </script> -->
     </body>
 </html>
