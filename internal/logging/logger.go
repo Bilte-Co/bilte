@@ -5,13 +5,14 @@ package logging
 
 import (
 	"context"
+	"log/slog"
 	"os"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
+	"github.com/lmittmann/tint"
 )
 
 // contextKey is a private string type to prevent collisions in the context map.
@@ -23,42 +24,38 @@ const loggerKey = contextKey("logger")
 var (
 	// defaultLogger is the default logger. It is initialized once per package
 	// include upon calling DefaultLogger.
-	defaultLogger     *zerolog.Logger
+	defaultLogger     *slog.Logger
 	defaultLoggerOnce sync.Once
 )
 
-func NewLogger(level string, development bool) *zerolog.Logger {
-	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-
-	var l zerolog.Logger
-
-	if development {
-		l = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-	} else {
-		l = log.Output(os.Stderr)
+func NewLogger(level string, development bool) *slog.Logger {
+	w := os.Stderr
+	options := &tint.Options{
+		TimeFormat: time.RFC3339,
 	}
 
 	switch level {
 	case "debug":
-		l = l.Level(zerolog.DebugLevel)
+		options.Level = slog.LevelDebug
 	case "info":
-		l = l.Level(zerolog.InfoLevel)
+		options.Level = slog.LevelInfo
 	case "warn":
-		l = l.Level(zerolog.WarnLevel)
+		options.Level = slog.LevelWarn
 	case "error":
-		l = l.Level(zerolog.ErrorLevel)
+		options.Level = slog.LevelError
 	default:
-		l = l.Level(zerolog.InfoLevel)
+		options.Level = slog.LevelInfo
 	}
 
-	return &l
+	logger := slog.New(tint.NewHandler(w, options))
+
+	return logger
 }
 
 // NewLoggerFromEnv creates a new logger from the environment. It consumes
 // LOG_LEVEL for determining the level and LOG_MODE for determining the output
 // parameters.
-func NewLoggerFromEnv() *zerolog.Logger {
+func NewLoggerFromEnv() *slog.Logger {
 	_ = godotenv.Load()
 
 	level := os.Getenv("LOG_LEVEL")
@@ -68,7 +65,7 @@ func NewLoggerFromEnv() *zerolog.Logger {
 }
 
 // DefaultLogger returns the default logger for the package.
-func DefaultLogger() *zerolog.Logger {
+func DefaultLogger() *slog.Logger {
 	defaultLoggerOnce.Do(func() {
 		defaultLogger = NewLoggerFromEnv()
 	})
@@ -76,14 +73,14 @@ func DefaultLogger() *zerolog.Logger {
 }
 
 // WithLogger creates a new context with the provided logger attached.
-func WithLogger(ctx context.Context, logger *zerolog.Logger) context.Context {
+func WithLogger(ctx context.Context, logger *slog.Logger) context.Context {
 	return context.WithValue(ctx, loggerKey, logger)
 }
 
 // FromContext returns the logger stored in the context. If no such logger
 // exists, a default logger is returned.
-func FromContext(ctx context.Context) *zerolog.Logger {
-	if logger, ok := ctx.Value(loggerKey).(*zerolog.Logger); ok {
+func FromContext(ctx context.Context) *slog.Logger {
+	if logger, ok := ctx.Value(loggerKey).(*slog.Logger); ok {
 		return logger
 	}
 	return DefaultLogger()

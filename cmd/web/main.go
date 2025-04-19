@@ -12,6 +12,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/r3labs/sse/v2"
 )
 
 type WebCmd struct{}
@@ -21,7 +22,7 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 
 	err := godotenv.Load()
 	if err != nil {
-		logger.Debug().Err(err).Msg("🤯 failed to load environment variables")
+		logger.Debug("🤯 failed to load environment variables")
 	}
 
 	port := os.Getenv("PORT")
@@ -48,26 +49,34 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 			Level: 5,
 		}))
 
-		// e.Use(middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(rate.Limit(100))))
-
 		e.Use(middleware.Recover())
 		e.Use(middleware.Secure())
 	}
 
 	e.Use(middleware.Logger())
 
-	e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{
-		Skipper:      middleware.DefaultSkipper,
-		ErrorMessage: "the request has timed out",
-		OnTimeoutRouteErrorHandler: func(err error, c echo.Context) {
-			_ = c.String(http.StatusRequestTimeout, "the request has timed out")
-		},
-		Timeout: 30 * time.Second,
-	}))
-
 	e.Static("/", "static")
 
-	e = router.NewRouter(e)
+	server := sse.New()       // create SSE broadcaster server
+	server.AutoReplay = false // do not replay messages for each new subscriber that connects
+
+	_ = server.CreateStream("feed")
+
+	go func(s *sse.Server) {
+		ticker := time.NewTicker(5 * time.Second)
+		defer ticker.Stop()
+
+		for {
+			select {
+			case <-ticker.C:
+				s.Publish("feed", &sse.Event{
+					Data: []byte(time.Now().Format(time.RFC3339Nano)),
+				})
+			}
+		}
+	}(server)
+
+	e = router.NewRouter(e, server)
 
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 
