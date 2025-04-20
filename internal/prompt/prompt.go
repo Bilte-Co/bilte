@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	COUNTRY_CODE = "::COUNTRY_CODE::"
+	COUNTRY_CODE  = "::COUNTRY_CODE::"
+	DEFAULT_GREET = "Hello and welcome!"
 )
 
 type Prompt struct {
@@ -31,23 +32,45 @@ func NewPrompt() *Prompt {
 }
 
 func (p *Prompt) Greet(c context.Context, countryCode string) string {
-	// get PROMPT_GREET from .env
-	greet := os.Getenv("PROMPT_GREET")
+	prompt := os.Getenv("PROMPT_GREET")
 
-	if greet == "" {
-		return "Hello and welcome!"
+	if prompt == "" {
+		return DEFAULT_GREET
 	}
 
-	greet = strings.ReplaceAll(greet, COUNTRY_CODE, countryCode)
+	prompt = strings.ReplaceAll(prompt, COUNTRY_CODE, countryCode)
 
 	chatCompletion, err := p.Client.Chat.Completions.New(c, openai.ChatCompletionNewParams{
 		Messages: []openai.ChatCompletionMessageParamUnion{
-			openai.UserMessage(greet),
+			openai.UserMessage(prompt),
 		},
 		Model: openai.ChatModelGPT4o,
 	})
 	if err != nil {
-		panic(err.Error())
+		return DEFAULT_GREET
 	}
+
+	return chatCompletion.Choices[0].Message.Content
+}
+
+func (p *Prompt) Fact(c context.Context, countryCode string) string {
+	prompt := os.Getenv("PROMPT_FACT")
+
+	if prompt == "" {
+		return ""
+	}
+
+	prompt = strings.ReplaceAll(prompt, COUNTRY_CODE, countryCode)
+
+	chatCompletion, err := p.Client.Chat.Completions.New(c, openai.ChatCompletionNewParams{
+		Messages: []openai.ChatCompletionMessageParamUnion{
+			openai.UserMessage(prompt),
+		},
+		Model: openai.ChatModelGPT4oMini,
+	})
+	if err != nil {
+		return ""
+	}
+
 	return chatCompletion.Choices[0].Message.Content
 }
