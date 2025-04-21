@@ -72,7 +72,7 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 			select {
 			case <-ticker.C:
 				s.Publish("feed", &sse.Event{
-					Data: []byte(" " + time.Now().UTC().Format(time.RFC3339)),
+					Data: []byte(time.Now().UTC().Format(time.RFC3339)),
 				})
 			}
 		}
