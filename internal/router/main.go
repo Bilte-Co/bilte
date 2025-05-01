@@ -13,28 +13,28 @@ func NewRouter(e *echo.Echo, sseServer *sse.Server, production bool) *echo.Echo 
 		return nil
 	})
 
-	e.GET("/sse", func(c echo.Context) error {
-		country := c.Request().Header.Get("CF-IPCountry")
+	// e.GET("/sse", func(c echo.Context) error {
+	// 	country := c.Request().Header.Get("CF-IPCountry")
 
-		go func(c string) {
-			if c == "" {
-				return
-			}
+	// 	go func(c string) {
+	// 		if c == "" {
+	// 			return
+	// 		}
 
-			sseServer.Publish("feed", &sse.Event{
-				Data: []byte("Your country is: " + c),
-			})
-		}(country)
+	// 		sseServer.Publish("feed", &sse.Event{
+	// 			Data: []byte("Your country is: " + c),
+	// 		})
+	// 	}(country)
 
-		go func() {
-			<-c.Request().Context().Done() // Received Browser Disconnection
-			return
-		}()
+	// 	go func() {
+	// 		<-c.Request().Context().Done() // Received Browser Disconnection
+	// 		return
+	// 	}()
 
-		sseServer.ServeHTTP(c.Response(), c.Request())
+	// 	sseServer.ServeHTTP(c.Response(), c.Request())
 
-		return nil
-	})
+	// 	return nil
+	// })
 
 	return e
 }

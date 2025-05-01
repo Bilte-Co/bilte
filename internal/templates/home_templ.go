@@ -37,7 +37,15 @@ func Home(production bool) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body><main><section><h1>bilte co</h1><h2>Strategy-led software engineering and consulting, built on experience, trusted across industries.</h2><p>Jamie Emerson is the founder of <span class=\"bilte-co\">bilte co</span>, where he works closely with select clients to architect, engineer, and lead the development of refined solutions to complex challenges.</p><p><span class=\"bilte-co\">bilte co</span> has partnered with institutions and enterprises across <strong>aviation</strong>, <strong>neuroscience research</strong>, <strong>enterprise data storage</strong>, <strong>corporate sustainability</strong>, and more—delivering impactful results in high-stakes domains.</p><p>At this time, <span class=\"bilte-co\">bilte co</span> is not accepting new clients or projects.</p></section></main></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body><main><section><h1>bilte co</h1><h2>Strategy-led software engineering and consulting, built on experience, trusted across industries.</h2><p>Jamie Emerson is the founder of <span class=\"bilte-co\">bilte co</span>, where he works closely with select clients to architect, engineer, and lead the development of refined solutions to complex challenges.</p><p><span class=\"bilte-co\">bilte co</span> has partnered with institutions and enterprises across <strong>aviation</strong>, <strong>neuroscience research</strong>, <strong>enterprise data storage</strong>, <strong>corporate sustainability</strong>, and more—delivering impactful results in high-stakes domains.</p>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = NewClients(true).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</section></main></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

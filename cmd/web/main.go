@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"time"
+
+	// "time"
 
 	"github.com/bilte-co/bilte/internal/logging"
 	"github.com/bilte-co/bilte/internal/router"
@@ -64,19 +65,19 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 
 	_ = server.CreateStream("feed")
 
-	go func(s *sse.Server) {
-		ticker := time.NewTicker(5 * time.Second)
-		defer ticker.Stop()
+	// go func(s *sse.Server) {
+	// 	ticker := time.NewTicker(5 * time.Second)
+	// 	defer ticker.Stop()
 
-		for {
-			select {
-			case <-ticker.C:
-				s.Publish("feed", &sse.Event{
-					Data: []byte(time.Now().UTC().Format(time.RFC3339)),
-				})
-			}
-		}
-	}(server)
+	// 	for {
+	// 		select {
+	// 		case <-ticker.C:
+	// 			s.Publish("feed", &sse.Event{
+	// 				Data: []byte(time.Now().UTC().Format(time.RFC3339)),
+	// 			})
+	// 		}
+	// 	}
+	// }(server)
 
 	e = router.NewRouter(e, server, isProduction)
 
