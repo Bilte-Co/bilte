@@ -41,7 +41,7 @@ func Home(production bool) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = NewClients(true).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = NewClients(false).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
