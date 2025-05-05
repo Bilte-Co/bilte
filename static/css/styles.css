@@ -68,47 +68,64 @@ h6 {
 }
 
 :root {
-    --white: #f6f7f8;
+    /* --white: #f6f7f8;
     --black: #161a1d;
     --gray-0: #d7dcdf;
+    --gray-5: #71787f;
+    --gray-8: #aab3bd;
     --background: var(--white);
-    --text: var(--black);
+    --text: var(--black); */
+    --white: oklch(100% 0 0);
+    --black: oklch(0% 0 0);
+    --gray-50: oklch(98.5% 0 0);
+    --gray-100: oklch(97% 0 0);
+    --gray-200: oklch(92.2% 0 0);
+    --gray-300: oklch(87% 0 0);
+    --gray-400: oklch(80.8% 0 0);
+    --gray-500: oklch(55.6% 0 0);
+    --gray-600: oklch(43.9% 0 0);
+    --gray-700: oklch(37.1% 0 0);
+    --gray-800: oklch(26.9% 0 0);
+    --gray-900: oklch(20.5% 0 0);
+    --gray-950: oklch(14.5% 0 0);
+    --background: var(--gray-100);
+    --text: var(--gray-800);
 }
 
 /* @font-face {
     font-family: founders-grotesk;
-    src: url("/fonts/founders-grotesk-light.woff2");
+    src: url("/public/fonts/founders-grotesk-light.woff2");
     font-weight: 300;
     font-display: auto;
 } */
 @font-face {
     font-family: founders-grotesk;
-    src: url("/fonts/founders-grotesk-regular.woff2");
+    src: url("/public/fonts/founders-grotesk-regular.woff2");
     font-weight: 400;
     font-display: swap;
 }
 @font-face {
     font-family: founders-grotesk;
-    src: url("/fonts/founders-grotesk-medium.woff2");
+    src: url("/public/fonts/founders-grotesk-medium.woff2");
     font-weight: 500;
     font-display: swap;
 }
 @font-face {
     font-family: founders-grotesk;
-    src: url("/fonts/founders-grotesk-bold.woff2");
+    src: url("/public/fonts/founders-grotesk-bold.woff2");
     font-weight: 700;
     font-display: swap;
 }
 /* @font-face {
     font-family: blex-mono;
-    src: url("/fonts/BlexMonoNerdFontMono-LightItalic.woff2");
+    src: url("/public/fonts/BlexMonoNerdFontMono-LightItalic.woff2");
     font-weight: 300;
     font-display: swap;
     font-style: italic;
 } */
 @font-face {
     font-family: blex-mono;
-    src: url("/fonts/BlexMonoNerdFontMono-Light.woff2");
+    src: url("/public/fonts/BlexMonoNerdFontMono-Light.woff2");
     font-weight: 300;
     font-display: swap;
 }
@@ -132,13 +149,24 @@ body {
 
 a {
     background-color: transparent;
+    transition: text-decoration-color 0.3s ease-in-out;
+    text-decoration-color: var(--gray-300);
+}
+
+a:visited {
+    color: initial;
+}
+
+a:hover {
+    text-decoration-color: var(--gray-800);
 }
 
 img {
     border-style: none;
 }
 
-ul {
+ul,
+ol {
     list-style: none;
     padding: 0;
 }
@@ -234,14 +262,66 @@ h1 {
     margin-bottom: 1.25rem;
 }
 
+body.cv h1 {
+    font-size: 3rem;
+}
+
+body.cv h2 {
+    margin-bottom: 0.75rem;
+}
+
+body.cv h3 {
+    margin-bottom: 0.625rem;
+    margin-top: 1.875rem;
+}
+
+.bullets {
+    display: grid;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.bullets li {
+    position: relative;
+}
+
+.bullets li:before {
+    content: "-";
+    position: absolute;
+    top: 0;
+    left: -20px;
+}
+
+.work li {
+    margin-bottom: 1.875rem;
+}
+
+.work li > p {
+    margin-bottom: 0;
+}
+
 h2 {
     font-weight: 500;
     font-size: 1.75rem;
     margin-bottom: 1.25rem;
 }
 
+h4 {
+    text-transform: uppercase;
+    margin-top: 1.25rem;
+    font-size: 1rem;
+}
+
 p {
     margin-bottom: 1rem;
+}
+
+body.cv .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 16px;
+    margin-bottom: 1.5rem;
 }
 
 @media screen and (min-width: 520px) {
@@ -259,6 +339,10 @@ p {
     h1 {
         /* font-size: 6rem; */
         font-size: 10rem;
+    }
+
+    body.cv h1 {
+        font-size: 5rem;
     }
 
     main {

@@ -1,0 +1,95 @@
+package templates
+
+import (
+	"github.com/bilte-co/bilte/internal/domain"
+	"strings"
+)
+
+func formatEnd(end string) string {
+	if end == "" {
+		return "Present"
+	}
+
+	return end
+}
+
+templ CV(production *bool, info domain.Resume, projects domain.Projects) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			@Head(production, &info.Name, &info.Title)
+		</head>
+		<body class="cv">
+			<main>
+				<section>
+					<h1>{ info.Name }</h1>
+					<h2>{ info.Title }</h2>
+					<ul class="contact">
+						<li>{ info.Email }</li>
+						<li>{ info.Location }</li>
+						for _, link := range info.Links {
+							if link.External {
+								<li><a href={ templ.URL(link.URL) } target="_blank">{ link.Name }</a></li>
+							} else {
+								<li><a href={ templ.URL(link.URL) }>{ link.Name }</a></li>
+							}
+						}
+					</ul>
+					<p>{ info.Intro }</p>
+					if len(info.Competancies) > 0 {
+						<h3>Technical Competancies</h3>
+						for _, comp := range info.Competancies {
+							<p><strong>{ comp.Name }: </strong>{ strings.Join(comp.Items, ", ") }</p>
+						}
+					}
+					if len(info.Experience) > 0 {
+						<h3>Experience</h3>
+						for _, exp := range info.Experience {
+							<h4>{ exp.Role }, { exp.Name } | { exp.Start } - { formatEnd(exp.End) }</h4>
+							<p><em>{ exp.Description }</em></p>
+							if len(exp.Bullets) > 0 {
+								<ul class="bullets">
+									for _, item := range exp.Bullets {
+										<li>{ item }</li>
+									}
+								</ul>
+							}
+							if projs, ok := projects[exp.Slug]; ok {
+								if len(projs) > 0 {
+									<ul class="work">
+										for _, proj := range projs {
+											<li>
+												<p><strong>{ proj.ClientName }: </strong>{ proj.Description }</p>
+												<code class="mono">[{ strings.Join(proj.Technologies, ", ") }]</code>
+											</li>
+										}
+									</ul>
+								}
+							}
+						}
+					}
+					if len(info.OtherExperience) > 0 {
+						<h3>Other Professional Experience</h3>
+						<ol>
+							for _, item := range info.OtherExperience {
+								<li><strong>{ item.Role }</strong> |  { item.Name } |  { item.Start } -  { item.End }</li>
+							}
+						</ol>
+					}
+					if len(info.Education) > 0 {
+						<h3>Education</h3>
+						<ol>
+							for _, item := range info.Education {
+								<li><strong>{ item.Name }</strong> |  { item.Description } |  { item.Degree } |  { item.Graduation }</li>
+							}
+						</ol>
+					}
+					if len(info.Interests) > 0 {
+						<h3>Interests</h3>
+						<p>{ strings.Join(info.Interests, ", ") }</p>
+					}
+				</section>
+			</main>
+		</body>
+	</html>
+}

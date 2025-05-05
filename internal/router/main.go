@@ -1,16 +1,89 @@
 package router
 
 import (
-	"github.com/bilte-co/bilte/internal/templates"
+	"encoding/json"
+	"io"
+	"net/http"
+	"os"
 
-	"github.com/labstack/echo/v4"
-	"github.com/r3labs/sse/v2"
+	healthcheck "github.com/RaMin0/gin-health-check"
+	brotli "github.com/anargu/gin-brotli"
+	"github.com/bilte-co/bilte/internal/domain"
+	"github.com/bilte-co/bilte/internal/templates"
+	"github.com/gin-gonic/gin"
+	stats "github.com/semihalev/gin-stats"
+	"golang.org/x/time/rate"
 )
 
-func NewRouter(e *echo.Echo, sseServer *sse.Server, production bool) *echo.Echo {
-	e.GET("/", func(c echo.Context) error {
-		templates.Home(production).Render(c.Request().Context(), c.Response().Writer)
-		return nil
+var limiter = rate.NewLimiter(50, 200)
+
+func rateLimiter(c *gin.Context) {
+	if !limiter.Allow() {
+		c.JSON(http.StatusTooManyRequests, gin.H{"error": "too many requests"})
+		c.Abort()
+		return
+	}
+	c.Next()
+}
+
+func NewRouter(r *gin.Engine, production *bool) *gin.Engine {
+	r.Use(brotli.Brotli(brotli.DefaultCompression))
+	r.Use(healthcheck.Default())
+	r.Use(stats.RequestStats())
+	r.Use(rateLimiter)
+
+	r.GET("/stats", func(c *gin.Context) {
+		c.JSON(http.StatusOK, stats.Report())
+	})
+
+	r.GET("/", func(c *gin.Context) {
+		title := "bilte co"
+		description := "Strategy-led software engineering and consulting—delivering impactful results in high-stakes domains."
+		c.HTML(http.StatusOK, "", templates.Home(production, &title, &description))
+	})
+
+	r.GET("/cv", func(c *gin.Context) {
+		var Info domain.Resume
+		var Projects domain.Projects
+		// we are going to get the data in data/resume.json and data/projects.json
+		infoFile, err := os.Open("data/resume.json")
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Error opening info file: "+err.Error())
+			return
+		}
+		defer infoFile.Close()
+
+		infoBytes, err := io.ReadAll(infoFile)
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Error reading info file: "+err.Error())
+			return
+		}
+		err = json.Unmarshal(infoBytes, &Info)
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Error unmarshalling info file: "+err.Error())
+			return
+		}
+
+		projectsFile, err := os.Open("data/projects.json")
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Error opening projects file: "+err.Error())
+			return
+		}
+		defer projectsFile.Close()
+
+		projectsBytes, err := io.ReadAll(projectsFile)
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Error reading projects file: "+err.Error())
+			return
+		}
+
+		err = json.Unmarshal(projectsBytes, &Projects)
+		if err != nil {
+			c.String(http.StatusInternalServerError, "Error unmarshalling projects file: "+err.Error())
+			return
+		}
+
+		c.HTML(http.StatusOK, "", templates.CV(production, Info, Projects))
 	})
 
 	// e.GET("/sse", func(c echo.Context) error {
@@ -36,5 +109,5 @@ func NewRouter(e *echo.Echo, sseServer *sse.Server, production bool) *echo.Echo 
 	// 	return nil
 	// })
 
-	return e
+	return r
 }

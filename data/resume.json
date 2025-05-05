@@ -1,0 +1,141 @@
+{
+  "name": "Jamie Emerson",
+  "title": "Principal Engineer & Technical Strategist",
+  "email": "jamie [at] bilte.co",
+  "location": "Ventura, CA",
+  "links": [
+    {
+      "name": "Github",
+      "url": "https://github.com/inghamemerson",
+      "external": true
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/inghamemerson/",
+      "external": true
+    }
+  ],
+  "intro": "I’m a leading full-stack engineer who designs and delivers mission-critical, hyperscale systems in aviation, advanced research, and other data-driven sectors. I excel at deciphering ambiguity, forging clear business strategies built on ironclad  architecture, and driving execution that withstands real-world load. Insatiably curious and growth-oriented, I lead by example, raising the technical bar, mentoring teams, and translating cutting-edge technology into lasting competitive edge. I integrate seamlessly into existing workflows while partnering directly with stakeholders to deliver rapid, high-impact solutions—even when that means navigating beyond standard processes to swiftly unlock meaningful value.",
+  "competancies": [
+    {
+      "name": "Expert",
+      "items": [
+        "Go",
+        "SQL",
+        "Bash",
+        "Git",
+        "Postgres",
+        "Redis",
+        "TypeScript",
+        "PHP",
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ]
+    },
+    {
+      "name": "Experienced",
+      "items": [
+        "AI/LLM",
+        "ML",
+        "CI/CD",
+        "AWS",
+        "GCP",
+        "Azure",
+        "fly.io",
+        "Docker",
+        "Python",
+        "Elasticsearch",
+        "React",
+        "Redux",
+        "GraphQL"
+      ]
+    },
+    {
+      "name": "Expanding",
+      "items": [
+        "dgraph",
+        "Neptune",
+        "RPC",
+        "NATS",
+        "Kubernetes",
+        "Terraform",
+        "Spark",
+        "Kafka"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "name": "Bilte Co",
+      "slug": "bilte-co",
+      "role": "owner",
+      "description": "Bilte Co is a software consulting agency that provides, engineering, strategy, and fractional CTO services to companies ranging from early-stage startups to Fortune 500 enterprises, focusing on architecture, development, and optimization of elegant solutions to complex problems.",
+      "start": "2019",
+      "end": null
+    },
+    {
+      "name": "Emerson Stone",
+      "slug": "emerson-stone",
+      "role": "Founding Partner",
+      "description": "Emerson Stone was a strategy-led digital design and development agency that worked with Fortune 500 organizations across the country. Our work spanned software development, marketing, business leadership, visual design and user-experience. Clients included IBM, 3M, Section.io and Audi. Acquired 2019.",
+      "start": "2015",
+      "end": "2019",
+      "bullets": [
+        "Built a company from the ground up, hiring, training, and leading engineers, designers, and operational staff to uphold a high standard of work quality, succeed in a competitive industry, and maintain a supportive and inviting culture.",
+        "Worked on both pre and post-sales strategies, helping define and scope projects, pitch our agency to highly technical customers, maintain ongoing relationships, and upsell existing customers for deeper engagements, leading to consistent revenue and 150% revenue growth year over year.",
+        "Oversaw all technical aspects of the business, whether building greenfield software, inheriting existing applications, migrating enterprise marketing websites, assisting in third-party integrations, or auditing code-bases poised for acquisition.",
+        "Provided insight as the senior technical resource for all internal and external teams, helping determine project feasibility, auditing designs for technical limitations, scoping and budgeting projects, determining project resourcing, as well as working hands on to help teams navigate challenging problems.",
+        "Operated as the most senior engineer on a broad spectrum of ongoing projects across both the frontend and backend, handling a multitude of both popular and esoteric languages and frameworks."
+      ]
+    }
+  ],
+  "other_experience": [
+    {
+      "role": "Frontend Developer",
+      "name": "Good Apples",
+      "start": "2013",
+      "end": "2014"
+    },
+    {
+      "role": "Frontend Developer & Student",
+      "name": "Boulder Digital Works",
+      "start": "2013",
+      "end": "2014"
+    },
+    {
+      "role": "eCommerce Manager & Developer",
+      "name": "Pro Peloton Cyclery",
+      "start": "2012",
+      "end": "2013"
+    },
+    {
+      "role": "eCommerce Manager & Developer",
+      "name": "Slipstream Sports",
+      "start": "2010",
+      "end": "2012"
+    }
+  ],
+  "education": [
+    {
+      "name": "Boulder Digital Works",
+      "description": "Graduate Program",
+      "degree": "Product Development, Entrepreneurship, Design Thinking",
+      "graduation": "2014"
+    },
+    {
+      "name": "University of Colorado",
+      "description": "Undergraduate",
+      "degree": "Bachelor of Arts",
+      "graduation": "2010"
+    }
+  ],
+  "interests": [
+    "mountain biking",
+    "alpine skiing",
+    "rock climbing",
+    "surfing",
+    "restoring vintage vehicles",
+    "homelab tinkering"
+  ]
+}

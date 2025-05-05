@@ -1,10 +1,10 @@
 package templates
 
-templ Home(production bool) {
+templ Home(production *bool, title *string, description *string) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
-			@Head(production)
+			@Head(production, title, description)
 		</head>
 		<body>
 			<main>

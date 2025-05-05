@@ -8,7 +8,7 @@ package templates
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Head(production bool) templ.Component {
+func Head(production *bool, title *string, description *string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,12 +29,90 @@ func Head(production bool) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\"><link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/images/apple-touch-icon.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/images/favicon-32x32.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/images/favicon-16x16.png\"><link rel=\"manifest\" href=\"/site.webmanifest\"><link rel=\"icon\" href=\"/images/favicon.ico\"><title>bilte co</title><meta name=\"title\" content=\"bilte co\"><meta name=\"description\" content=\"Strategy-led software engineering and consulting—delivering impactful results in high-stakes domains.\"><meta property=\"og:type\" content=\"website\"><meta property=\"og:url\" content=\"bilte.co\"><meta property=\"locale\" content=\"en_US\"><meta property=\"og:title\" content=\"bilte co\"><meta property=\"og:description\" content=\"Strategy-led software engineering and consulting—delivering impactful results in high-stakes domains.\"><meta property=\"og:image\" content=\"/images/og-image.jpg\"><meta property=\"site_name\" content=\"bilte co\"><meta name=\"theme-color\" content=\"#f6f7f8\"><link rel=\"preload\" href=\"/fonts/founders-grotesk-regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"><link rel=\"preload\" href=\"/fonts/founders-grotesk-medium.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"><link rel=\"preload\" href=\"/fonts/founders-grotesk-bold.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"><link rel=\"stylesheet\" href=\"/css/styles.css\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\"><link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/public/images/apple-touch-icon.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/public/images/favicon-32x32.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/public/images/favicon-16x16.png\"><link rel=\"manifest\" href=\"/public/site.webmanifest\"><link rel=\"icon\" href=\"/public/images/favicon.ico\"><title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if production {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<script>\n            !(function (t, e) {\n                var o, n, p, r;\n                e.__SV ||\n                    ((window.posthog = e),\n                    (e._i = []),\n                    (e.init = function (i, s, a) {\n                        function g(t, e) {\n                            var o = e.split(\".\");\n                            2 == o.length && ((t = t[o[0]]), (e = o[1])),\n                                (t[e] = function () {\n                                    t.push(\n                                        [e].concat(\n                                            Array.prototype.slice.call(\n                                                arguments,\n                                                0,\n                                            ),\n                                        ),\n                                    );\n                                });\n                        }\n                        ((p = t.createElement(\"script\")).type =\n                            \"text/javascript\"),\n                            (p.crossOrigin = \"anonymous\"),\n                            (p.async = !0),\n                            (p.src =\n                                s.api_host.replace(\n                                    \".i.posthog.com\",\n                                    \"-assets.i.posthog.com\",\n                                ) + \"/static/array.js\"),\n                            (r =\n                                t.getElementsByTagName(\n                                    \"script\",\n                                )[0]).parentNode.insertBefore(p, r);\n                        var u = e;\n                        for (\n                            void 0 !== a ? (u = e[a] = []) : (a = \"posthog\"),\n                                u.people = u.people || [],\n                                u.toString = function (t) {\n                                    var e = \"posthog\";\n                                    return (\n                                        \"posthog\" !== a && (e += \".\" + a),\n                                        t || (e += \" (stub)\"),\n                                        e\n                                    );\n                                },\n                                u.people.toString = function () {\n                                    return u.toString(1) + \".people (stub)\";\n                                },\n                                o =\n                                    \"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric\".split(\n                                        \" \",\n                                    ),\n                                n = 0;\n                            n < o.length;\n                            n++\n                        )\n                            g(u, o[n]);\n                        e._i.push([i, s, a]);\n                    }),\n                    (e.__SV = 1));\n            })(document, window.posthog || []);\n            posthog.init(\"phc_i3AjobMODEfax4FO5q2GRihJR8bSTj8hlw3yMFWZLBN\", {\n                api_host: \"https://us.i.posthog.com\",\n                person_profiles: \"always\", // or 'always' to create profiles for anonymous users as well\n            });\n        </script>")
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(*title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/head.templ`, Line: 26, Col: 16}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><meta name=\"title\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(*title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/head.templ`, Line: 27, Col: 36}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><meta name=\"description\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var4 string
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(*description)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/head.templ`, Line: 30, Col: 24}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\"><meta property=\"og:type\" content=\"website\"><meta property=\"og:url\" content=\"bilte.co\"><meta property=\"locale\" content=\"en_US\"><meta property=\"og:title\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(*title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/head.templ`, Line: 35, Col: 43}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><meta property=\"og:description\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(*description)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/head.templ`, Line: 38, Col: 24}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"><meta property=\"og:image\" content=\"/public/images/og-image.jpg\"><meta property=\"site_name\" content=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(*title)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/head.templ`, Line: 41, Col: 44}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><meta name=\"theme-color\" content=\"#f6f7f8\"><link rel=\"preload\" href=\"/public/fonts/founders-grotesk-regular.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"><link rel=\"preload\" href=\"/public/fonts/founders-grotesk-medium.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"><link rel=\"preload\" href=\"/public/fonts/founders-grotesk-bold.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"><link rel=\"stylesheet\" href=\"/public/css/styles.css\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if *production {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<script>\n            !(function (t, e) {\n                var o, n, p, r;\n                e.__SV ||\n                    ((window.posthog = e),\n                    (e._i = []),\n                    (e.init = function (i, s, a) {\n                        function g(t, e) {\n                            var o = e.split(\".\");\n                            2 == o.length && ((t = t[o[0]]), (e = o[1])),\n                                (t[e] = function () {\n                                    t.push(\n                                        [e].concat(\n                                            Array.prototype.slice.call(\n                                                arguments,\n                                                0,\n                                            ),\n                                        ),\n                                    );\n                                });\n                        }\n                        ((p = t.createElement(\"script\")).type =\n                            \"text/javascript\"),\n                            (p.crossOrigin = \"anonymous\"),\n                            (p.async = !0),\n                            (p.src =\n                                s.api_host.replace(\n                                    \".i.posthog.com\",\n                                    \"-assets.i.posthog.com\",\n                                ) + \"/static/array.js\"),\n                            (r =\n                                t.getElementsByTagName(\n                                    \"script\",\n                                )[0]).parentNode.insertBefore(p, r);\n                        var u = e;\n                        for (\n                            void 0 !== a ? (u = e[a] = []) : (a = \"posthog\"),\n                                u.people = u.people || [],\n                                u.toString = function (t) {\n                                    var e = \"posthog\";\n                                    return (\n                                        \"posthog\" !== a && (e += \".\" + a),\n                                        t || (e += \" (stub)\"),\n                                        e\n                                    );\n                                },\n                                u.people.toString = function () {\n                                    return u.toString(1) + \".people (stub)\";\n                                },\n                                o =\n                                    \"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric\".split(\n                                        \" \",\n                                    ),\n                                n = 0;\n                            n < o.length;\n                            n++\n                        )\n                            g(u, o[n]);\n                        e._i.push([i, s, a]);\n                    }),\n                    (e.__SV = 1));\n            })(document, window.posthog || []);\n            posthog.init(\"phc_i3AjobMODEfax4FO5q2GRihJR8bSTj8hlw3yMFWZLBN\", {\n                api_host: \"https://us.i.posthog.com\",\n                person_profiles: \"always\", // or 'always' to create profiles for anonymous users as well\n            });\n        </script>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

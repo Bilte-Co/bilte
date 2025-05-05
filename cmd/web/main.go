@@ -2,21 +2,34 @@ package web
 
 import (
 	"context"
-	"fmt"
-	"net/http"
+	"html/template"
 	"os"
+	"strings"
 
 	// "time"
 
 	"github.com/bilte-co/bilte/internal/logging"
 	"github.com/bilte-co/bilte/internal/router"
+	"github.com/bilte-co/bilte/internal/templates"
 	"github.com/joho/godotenv"
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
-	"github.com/r3labs/sse/v2"
+
+	"github.com/gin-gonic/gin"
 )
 
 type WebCmd struct{}
+
+func safeHTML(s string) template.HTML {
+	return template.HTML(s)
+}
+
+func staticCacheMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		if strings.HasPrefix(c.Request.URL.Path, "/public") {
+			c.Header("Cache-Control", "public, max-age=31536000")
+		}
+		c.Next()
+	}
+}
 
 func (cmd *WebCmd) Run(ctx *context.Context) error {
 	logger := logging.NewLoggerFromEnv()
@@ -38,32 +51,52 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 
 	isProduction := appEnv == "production"
 
-	e := echo.New()
-	e.Use(middleware.RemoveTrailingSlashWithConfig(middleware.TrailingSlashConfig{
-		RedirectCode: http.StatusMovedPermanently,
-	}))
-
 	if isProduction {
-		e.HideBanner = true
-		e.HidePort = true
-		e.Pre(middleware.HTTPSRedirect())
-
-		e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
-			Level: 5,
-		}))
-
-		e.Use(middleware.Recover())
-		e.Use(middleware.Secure())
+		gin.SetMode(gin.ReleaseMode)
 	}
 
-	e.Use(middleware.Logger())
+	r := gin.Default()
 
-	e.Static("/", "static")
+	r.ForwardedByClientIP = true
+	r.SetTrustedProxies([]string{"127.0.0.1"})
 
-	server := sse.New()       // create SSE broadcaster server
-	server.AutoReplay = false // do not replay messages for each new subscriber that connects
+	r.LoadHTMLFiles()
 
-	_ = server.CreateStream("feed")
+	// r.LoadHTMLGlob("../../internal/templates/**/*.templ")
+
+	if gin.Mode() == gin.ReleaseMode {
+		r.Use(staticCacheMiddleware())
+	}
+
+	// engine.HTMLRender = gintemplrenderer.Default
+
+	ginHtmlRenderer := r.HTMLRender
+	r.HTMLRender = &templates.HTMLTemplRenderer{FallbackHtmlRenderer: ginHtmlRenderer}
+
+	// e := echo.New()
+	// e.Use(middleware.RemoveTrailingSlashWithConfig(middleware.TrailingSlashConfig{
+	// 	RedirectCode: http.StatusMovedPermanently,
+	// }))
+
+	// if isProduction {
+	// 	e.HideBanner = true
+	// 	e.HidePort = true
+	// 	e.Pre(middleware.HTTPSRedirect())
+
+	// 	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
+	// 		Level: 5,
+	// 	}))
+
+	// 	e.Use(middleware.Recover())
+	// 	e.Use(middleware.Secure())
+	// }
+
+	r.Static("/public", "static")
+
+	// server := sse.New()       // create SSE broadcaster server
+	// server.AutoReplay = false // do not replay messages for each new subscriber that connects
+
+	// _ = server.CreateStream("feed")
 
 	// go func(s *sse.Server) {
 	// 	ticker := time.NewTicker(5 * time.Second)
@@ -79,9 +112,10 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 	// 	}
 	// }(server)
 
-	e = router.NewRouter(e, server, isProduction)
+	r = router.NewRouter(r, &isProduction)
 
-	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
+	// e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
+	r.Run(":" + port)
 
 	return nil
 }

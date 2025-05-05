@@ -1,14 +1,78 @@
-[
-  {
-    "title": "Southwest Airlines",
-    "description": "beep"
-  },
-  {
-    "title": "foo",
-    "description": "bar"
-  },
-  {
-    "title": "derp",
-    "description": "boop"
-  }
-]
+{
+  "bilte-co": [
+    {
+      "company": "bilte-co",
+      "client_name": "Southwest",
+      "technologies": [
+        "Go",
+        "Postgres",
+        "Clickhouse",
+        "MQTT",
+        "SQL",
+        "Python",
+        "TypeScript",
+        "HTMX",
+        "Tailwind"
+      ],
+      "description": "Conceived, architected, and deployed the industry’s first integrated flight-insights platform, exposing high-impact operational intelligence previously nebulous to frontline and executive leadership. Engineered a horizontally scalable ingestion pipeline that fuses multi-modal data via distributed stream processing, columnar storage, and adaptive partitioning—algorithms heretofore unproven in the tactical operational space. Delivered a production-ready proof of concept in a fraction of the sector’s typical cycle time, establishing a new benchmark for speed-to-value and decision superiority."
+    },
+    {
+      "company": "bilte-co",
+      "client_name": "Yale University",
+      "technologies": [
+        "Go",
+        "React",
+        "Redux",
+        "SQL",
+        "Docker",
+        "Tailwind",
+        "fly.io"
+      ],
+      "description": "Worked closely with neuroscientists and researchers to design and build an internal genome management platform, replacing a legacy manual-entry system. This work cleaned up and improved decades of historic data, created previously unavailable relationships between the records, and eliminated systemic data errors, enabling researchers to more confidently and rapidly achieve their work."
+    },
+    {
+      "company": "bilte-co",
+      "client_name": "Sustainable",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "Postgres",
+        "TypeScript",
+        "NextJS",
+        "Tailwind"
+      ],
+      "description": "As the CTO of an ESG data startup, I hired and managed a small team of senior engineers to build products making sustainability data more accessible and consumable to the public, as well as tooling for companies to more easily report ESG metrics. My strategies put us in the top 5 results on Google for nearly all major brand sustainability searches and enabled us to rapidly iterate on numerous products."
+    },
+    {
+      "company": "bilte-co",
+      "client_name": "NetApp",
+      "technologies": ["TypeScript", "CSS", "SQL"],
+      "description": "Optimized data infrastructure and leveraged it to deploy personalization strategies across multiple domains around the world. These efforts resulted in very strong business results, frequently achieving 3x the conversion rates of the control and reducing engineering lift 10-20x."
+    },
+    {
+      "company": "bilte-co",
+      "client_name": "Strava",
+      "technologies": ["HTML", "CSS", "TypeScript"],
+      "description": "Delivered a dynamic, data-powered marketing site targeting municipal customers. By integrating city-specific product insights, in partnership with internal teams, we translated raw data into personalized narratives to drive qualified organic leads."
+    },
+    {
+      "company": "bilte-co",
+      "client_name": "Gloo",
+      "technologies": ["GraphQL", "SSO", "MFA", "IAM", "React", "TypeScript"],
+      "description": "Led a team of developers to optimize and enrich various aspects of distributed products, including authentication systems, analytics tooling, and custom CMS solutions. This enabled the company to better scale with its growing customer base and widening portfolio."
+    },
+    {
+      "company": "bilte-co",
+      "client_name": "Visionair",
+      "technologies": [
+        "Go",
+        "Postgres",
+        "Python",
+        "PHP",
+        "Elasticsearch",
+        "Prometheus"
+      ],
+      "description": "Architected, built, and optimized the core data infrastructure and technical solutions powering the processing of hundreds of millions of artifacts daily, directly enabling the company to secure $500K–$3M contracts with the world’s largest genealogy companies."
+    }
+  ]
+}
