@@ -2,7 +2,7 @@
   "bilte-co": [
     {
       "company": "bilte-co",
-      "client_name": "Southwest",
+      "client_name": "Southwest Airlines",
       "technologies": [
         "Go",
         "Postgres",
