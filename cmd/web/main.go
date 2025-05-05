@@ -6,12 +6,11 @@ import (
 	"os"
 	"strings"
 
-	// "time"
-
 	"github.com/bilte-co/bilte/internal/logging"
 	"github.com/bilte-co/bilte/internal/router"
 	"github.com/bilte-co/bilte/internal/templates"
 	"github.com/joho/godotenv"
+	sloggin "github.com/samber/slog-gin"
 
 	"github.com/gin-gonic/gin"
 )
@@ -56,16 +55,18 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 	}
 
 	r := gin.Default()
+	config := sloggin.Config{
+		WithSpanID:  true,
+		WithTraceID: true,
+	}
+	r.Use(sloggin.NewWithConfig(logger, config))
 
 	r.ForwardedByClientIP = true
 	r.SetTrustedProxies([]string{"127.0.0.1"})
 
-	r.LoadHTMLFiles()
-
-	// r.LoadHTMLGlob("../../internal/templates/**/*.templ")
-
 	if gin.Mode() == gin.ReleaseMode {
 		r.Use(staticCacheMiddleware())
+		r.Use(gin.Recovery())
 	}
 
 	// engine.HTMLRender = gintemplrenderer.Default
@@ -90,6 +91,7 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 	// 	e.Use(middleware.Recover())
 	// 	e.Use(middleware.Secure())
 	// }
+	//
 
 	r.Static("/public", "static")
 
