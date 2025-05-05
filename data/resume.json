@@ -54,6 +54,7 @@
     {
       "name": "Expanding",
       "items": [
+        "MCP",
         "dgraph",
         "Neptune",
         "RPC",
