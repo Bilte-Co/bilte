@@ -116,13 +116,6 @@ h6 {
     font-weight: 700;
     font-display: swap;
 }
-/* @font-face {
-    font-family: blex-mono;
-    src: url("/public/fonts/BlexMonoNerdFontMono-LightItalic.woff2");
-    font-weight: 300;
-    font-display: swap;
-    font-style: italic;
-} */
 @font-face {
     font-family: blex-mono;
     src: url("/public/fonts/BlexMonoNerdFontMono-Light.woff2");
@@ -206,6 +199,7 @@ strong {
 
 .mono {
     font-family: blex-mono;
+    font-weight: 300;
     font-size: 0.875rem;
 }
 
