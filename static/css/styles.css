@@ -150,7 +150,8 @@ body {
 a {
     background-color: transparent;
     transition: text-decoration-color 0.3s ease-in-out;
-    text-decoration-color: var(--gray-300);
+    color: var(--text);
+    text-decoration-color: var(--gray-400);
 }
 
 a:visited {
