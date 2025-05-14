@@ -52,7 +52,7 @@ type Resume struct {
 	Location        string            `json:"location"`
 	Links           []Link            `json:"links"`
 	Intro           string            `json:"intro"`
-	Competancies    []Competancy      `json:"competancies"`
+	Competencies    []Competancy      `json:"competencies"`
 	Experience      []Experience      `json:"experience"`
 	OtherExperience []OtherExperience `json:"other_experience"`
 	Education       []Education       `jsone:"education"`

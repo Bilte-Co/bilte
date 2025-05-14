@@ -36,9 +36,9 @@ templ CV(production *bool, info domain.Resume, projects domain.Projects) {
 						}
 					</ul>
 					<p>{ info.Intro }</p>
-					if len(info.Competancies) > 0 {
-						<h3>Technical Competancies</h3>
-						for _, comp := range info.Competancies {
+					if len(info.Competencies) > 0 {
+						<h3>Technical Competencies</h3>
+						for _, comp := range info.Competencies {
 							<p><strong>{ comp.Name }: </strong><span class="mono">{ strings.Join(comp.Items, ", ") }</span></p>
 						}
 					}
