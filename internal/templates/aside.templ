@@ -1,20 +1,21 @@
 package templates
 
 templ Aside() {
-	<aside id="feed" class="feed-wrapper">
+	<aside id="stream" class="stream-wrapper">
 		<code class="mono"></code>
 	</aside>
 	<script>
         if (typeof EventSource !== "undefined") {
-            const source = new EventSource("/sse?stream=feed");
+            const source = new EventSource("/sse");
             source.onmessage = function (event) {
-                feedWrap = document.getElementById("feed");
-                feedEl = feedWrap.firstElementChild;
+              console.log({event})
+                streamWrap = document.getElementById("stream");
+                streamEl = streamWrap.firstElementChild;
 
-                feedEl.innerHTML += "<p>" + event.data + "</p>";
+                streamEl.innerHTML += "<p>" + event.data + "</p>";
             };
         } else {
-            document.getElementById("feed").innerHTML =
+            document.getElementById("stream").innerHTML =
                 "Sorry, your browser does not support server-sent events...";
         }
     </script>

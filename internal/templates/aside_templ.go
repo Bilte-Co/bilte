@@ -29,7 +29,7 @@ func Aside() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<aside id=\"feed\" class=\"feed-wrapper\"><code class=\"mono\"></code></aside><script>\n        if (typeof EventSource !== \"undefined\") {\n            const source = new EventSource(\"/sse?stream=feed\");\n            source.onmessage = function (event) {\n                feedWrap = document.getElementById(\"feed\");\n                feedEl = feedWrap.firstElementChild;\n\n                feedEl.innerHTML += \"<p>\" + event.data + \"</p>\";\n            };\n        } else {\n            document.getElementById(\"feed\").innerHTML =\n                \"Sorry, your browser does not support server-sent events...\";\n        }\n    </script>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<aside id=\"stream\" class=\"stream-wrapper\"><code class=\"mono\"></code></aside><script>\n        if (typeof EventSource !== \"undefined\") {\n            const source = new EventSource(\"/sse\");\n            source.onmessage = function (event) {\n              console.log({event})\n                streamWrap = document.getElementById(\"stream\");\n                streamEl = streamWrap.firstElementChild;\n\n                streamEl.innerHTML += \"<p>\" + event.data + \"</p>\";\n            };\n        } else {\n            document.getElementById(\"stream\").innerHTML =\n                \"Sorry, your browser does not support server-sent events...\";\n        }\n    </script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

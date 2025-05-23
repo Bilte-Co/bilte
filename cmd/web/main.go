@@ -9,10 +9,10 @@ import (
 	"github.com/bilte-co/bilte/internal/logging"
 	"github.com/bilte-co/bilte/internal/router"
 	"github.com/bilte-co/bilte/internal/templates"
-	"github.com/joho/godotenv"
-	sloggin "github.com/samber/slog-gin"
-
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"github.com/nats-io/nats.go"
+	sloggin "github.com/samber/slog-gin"
 )
 
 type WebCmd struct{}
@@ -54,6 +54,24 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
+	natsOpts := []nats.Option{}
+
+	natsURL := os.Getenv("NATS_URL")
+	if natsURL == "" {
+		natsURL = "nats://localhost:4222"
+	}
+
+	natsToken := os.Getenv("NATS_TOKEN")
+	if natsToken != "" {
+		logger.Info("ℹ️ using NATS token")
+		natsOpts = append(natsOpts, nats.Token(natsToken))
+	}
+
+	nc, err := nats.Connect(natsURL, natsOpts...)
+	if err != nil {
+		return err
+	}
+
 	r := gin.Default()
 	config := sloggin.Config{
 		WithSpanID:  true,
@@ -69,54 +87,13 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 		r.Use(gin.Recovery())
 	}
 
-	// engine.HTMLRender = gintemplrenderer.Default
-
 	ginHtmlRenderer := r.HTMLRender
 	r.HTMLRender = &templates.HTMLTemplRenderer{FallbackHtmlRenderer: ginHtmlRenderer}
 
-	// e := echo.New()
-	// e.Use(middleware.RemoveTrailingSlashWithConfig(middleware.TrailingSlashConfig{
-	// 	RedirectCode: http.StatusMovedPermanently,
-	// }))
-
-	// if isProduction {
-	// 	e.HideBanner = true
-	// 	e.HidePort = true
-	// 	e.Pre(middleware.HTTPSRedirect())
-
-	// 	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
-	// 		Level: 5,
-	// 	}))
-
-	// 	e.Use(middleware.Recover())
-	// 	e.Use(middleware.Secure())
-	// }
-	//
-
 	r.Static("/public", "static")
 
-	// server := sse.New()       // create SSE broadcaster server
-	// server.AutoReplay = false // do not replay messages for each new subscriber that connects
+	r = router.NewRouter(r, &isProduction, nc)
 
-	// _ = server.CreateStream("feed")
-
-	// go func(s *sse.Server) {
-	// 	ticker := time.NewTicker(5 * time.Second)
-	// 	defer ticker.Stop()
-
-	// 	for {
-	// 		select {
-	// 		case <-ticker.C:
-	// 			s.Publish("feed", &sse.Event{
-	// 				Data: []byte(time.Now().UTC().Format(time.RFC3339)),
-	// 			})
-	// 		}
-	// 	}
-	// }(server)
-
-	r = router.NewRouter(r, &isProduction)
-
-	// e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 	r.Run(":" + port)
 
 	return nil
