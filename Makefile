@@ -1,9 +1,9 @@
 .PHONY: build clean
 
 # Binary name and path
-BINARY_DIR=~/code/neuroscan
-BINARY_NAME=neuroscan
-CMD_PATH=cmd/neuroscan
+BINARY_DIR=~/code/bilte
+BINARY_NAME=bilte
+CMD_PATH=cmd
 
 # Build flags for smaller binary size
 LDFLAGS=-w -s
