@@ -1,6 +1,6 @@
 module github.com/bilte-co/bilte
 
-go 1.24.0
+go 1.24.3
 
 require (
 	github.com/RaMin0/gin-health-check v0.0.0-20180807004848-a677317b3f01
@@ -12,8 +12,10 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/lmittmann/tint v1.0.7
 	github.com/maypok86/otter v1.2.4
+	github.com/nats-io/nats.go v1.42.0
 	github.com/oklog/ulid v1.3.1
 	github.com/openai/openai-go v0.1.0-beta.10
+	github.com/samber/slog-gin v1.15.0
 	github.com/semihalev/gin-stats v0.0.0-20180505163755-30fdcbbd3533
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8
 )
@@ -69,7 +71,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
-	github.com/nats-io/nats.go v1.42.0 // indirect
 	github.com/nats-io/nkeys v0.4.11 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/ncruces/go-strftime v0.1.9 // indirect
@@ -82,7 +83,6 @@ require (
 	github.com/prometheus/procfs v0.16.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20250401214520-65e299d6c5c9 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
-	github.com/samber/slog-gin v1.15.0 // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/shopspring/decimal v1.4.0 // indirect

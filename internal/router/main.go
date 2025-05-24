@@ -14,7 +14,8 @@ import (
 	"github.com/bilte-co/bilte/internal/domain"
 	"github.com/bilte-co/bilte/internal/templates"
 	"github.com/gin-gonic/gin"
-	"github.com/nats-io/nats.go"
+
+	// "github.com/nats-io/nats.go"
 	stats "github.com/semihalev/gin-stats"
 	"golang.org/x/time/rate"
 )
@@ -133,7 +134,7 @@ func (stream *Event) serveHTTP() gin.HandlerFunc {
 	}
 }
 
-func NewRouter(r *gin.Engine, production *bool, nc *nats.Conn) *gin.Engine {
+func NewRouter(r *gin.Engine, production *bool) *gin.Engine {
 	r.Use(brotli.Brotli(brotli.DefaultCompression))
 	r.Use(healthcheck.Default())
 	r.Use(stats.RequestStats())
@@ -207,25 +208,25 @@ func NewRouter(r *gin.Engine, production *bool, nc *nats.Conn) *gin.Engine {
 		c.HTML(http.StatusOK, "", templates.CV(production, Info, Projects))
 	})
 
-	r.GET("/sse", HeadersMiddleware(), stream.serveHTTP(), func(c *gin.Context) {
-		v, ok := c.Get("clientChan")
-		if !ok {
-			return
-		}
-		clientChan, ok := v.(ClientChan)
-		if !ok {
-			return
-		}
-		c.Stream(func(w io.Writer) bool {
-			// Stream message to client from message channel
-			if msg, ok := <-clientChan; ok {
-				fmt.Println("Streaming message to client:", msg)
-				c.SSEvent("message", msg)
-				return true
-			}
-			return false
-		})
-	})
+	// r.GET("/sse", HeadersMiddleware(), stream.serveHTTP(), func(c *gin.Context) {
+	// 	v, ok := c.Get("clientChan")
+	// 	if !ok {
+	// 		return
+	// 	}
+	// 	clientChan, ok := v.(ClientChan)
+	// 	if !ok {
+	// 		return
+	// 	}
+	// 	c.Stream(func(w io.Writer) bool {
+	// 		// Stream message to client from message channel
+	// 		if msg, ok := <-clientChan; ok {
+	// 			fmt.Println("Streaming message to client:", msg)
+	// 			c.SSEvent("message", msg)
+	// 			return true
+	// 		}
+	// 		return false
+	// 	})
+	// })
 
 	return r
 }

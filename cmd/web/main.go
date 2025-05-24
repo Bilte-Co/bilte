@@ -11,7 +11,8 @@ import (
 	"github.com/bilte-co/bilte/internal/templates"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/nats-io/nats.go"
+
+	// "github.com/nats-io/nats.go"
 	sloggin "github.com/samber/slog-gin"
 )
 
@@ -54,23 +55,23 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
-	natsOpts := []nats.Option{}
+	// natsOpts := []nats.Option{}
 
-	natsURL := os.Getenv("NATS_URL")
-	if natsURL == "" {
-		natsURL = "nats://localhost:4222"
-	}
+	// natsURL := os.Getenv("NATS_URL")
+	// if natsURL == "" {
+	// 	natsURL = "nats://localhost:4222"
+	// }
 
-	natsToken := os.Getenv("NATS_TOKEN")
-	if natsToken != "" {
-		logger.Info("ℹ️ using NATS token")
-		natsOpts = append(natsOpts, nats.Token(natsToken))
-	}
+	// natsToken := os.Getenv("NATS_TOKEN")
+	// if natsToken != "" {
+	// 	logger.Info("ℹ️ using NATS token")
+	// 	natsOpts = append(natsOpts, nats.Token(natsToken))
+	// }
 
-	nc, err := nats.Connect(natsURL, natsOpts...)
-	if err != nil {
-		return err
-	}
+	// nc, err := nats.Connect(natsURL, natsOpts...)
+	// if err != nil {
+	// 	return err
+	// }
 
 	r := gin.Default()
 	config := sloggin.Config{
@@ -92,7 +93,8 @@ func (cmd *WebCmd) Run(ctx *context.Context) error {
 
 	r.Static("/public", "static")
 
-	r = router.NewRouter(r, &isProduction, nc)
+	// r = router.NewRouter(r, &isProduction, nc)
+	r = router.NewRouter(r, &isProduction)
 
 	r.Run(":" + port)
 
