@@ -18,52 +18,43 @@
   "intro": "I’m a leading full-stack engineer who designs and delivers mission-critical, hyperscale systems in aviation, advanced research, and other data-driven sectors. I excel at deciphering ambiguity, forging clear business strategies built on ironclad  architecture, and driving execution that withstands real-world load. Insatiably curious and growth-oriented, I lead by example, raising the technical bar, mentoring teams, and translating cutting-edge technology into lasting competitive edge. I integrate seamlessly into existing workflows while partnering directly with stakeholders to deliver rapid, high-impact solutions—even when that means navigating beyond standard processes to swiftly unlock meaningful value.",
   "competencies": [
     {
-      "name": "Expert",
+      "name": "Experienced",
       "items": [
         "Go",
         "SQL",
-        "Bash",
+        "Shell",
         "Git",
+        "REST",
         "Postgres",
         "Redis",
         "TypeScript",
+        "React",
         "PHP",
         "JavaScript",
         "CSS",
-        "HTML"
+        "HTML",
+        "CI/CD"
       ]
     },
     {
-      "name": "Experienced",
+      "name": "Acquainted",
       "items": [
-        "AI/LLM",
-        "ML",
-        "CI/CD",
         "AWS",
         "GCP",
         "Azure",
+        "Clickhouse",
         "fly.io",
         "Docker",
         "Python",
         "Elasticsearch",
-        "React",
         "Redux",
-        "GraphQL"
+        "GraphQL",
+        "AI/LLM"
       ]
     },
     {
-      "name": "Expanding",
-      "items": [
-        "MCP",
-        "dgraph",
-        "Neptune",
-        "RPC",
-        "NATS",
-        "Kubernetes",
-        "Terraform",
-        "Spark",
-        "Kafka"
-      ]
+      "name": "Exploring",
+      "items": ["RPC", "NATS", "MCP", "Kubernetes", "IaC", "MQTT"]
     }
   ],
   "experience": [
